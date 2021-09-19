@@ -1,0 +1,51 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle
+spec:
+  initContainers:
+  - name: ic
+    image: alpine
+    command: ["sh", "-c"]
+    args:
+    - |
+      echo [`date`][ic] Start.; sleep 3; echo [`date`][ic] End.; exit 0
+  containers:
+  - name: c
+    image: alpine
+    command: ["sh", "-c"]
+    args:
+    - |
+      c
+    image: alpine
+    command: ["sh", "-c"]
+    args:
+    - |
+      trap 'echo "[`date`] SIGTERM detected!!"; sleep 3; echo "[`date`] Bye."; exit 0' TERM
+
+      echo [`date`][ c] Start.
+
+      while true
+      do
+        date
+        sleep 1
+      done
+    lifecycle:
+      postStart:
+        exec:
+          command:
+            - sh
+            - -c
+            - |
+              echo [`date`][ c] hook postStart.
+              exit 0
+      preStop:
+        exec:
+          command:
+            - sh
+            - -c
+            - |
+              echo [`date`][ c] hook preStop.
+              exit 1
+  restartPolicy: Never
+  terminationGracePeriodSeconds: 30
