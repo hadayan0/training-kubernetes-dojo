@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: do6
+spec:
+  restartPolicy: OnFailure
+  initContainers:
+  - name: tatti
+    image: alpine
+    command: ["sh", "-c"]
+    args:
+    - |
+      echo [`date`] Initialize...
+      touch /var/log/dt/out.log
+    volumeMounts:
+    - name: vol-mnt
+      mountPath: /var/log/dt
+  containers:
+  - name: deeto
+    image: alpine
+    command: ["sh", "-c"]
+    args:
+    - |
+      echo [`date`] Append log...
+      exec >> /var/log/dt/out.log
+      echo -n 'Start at: '
+      date
+      sleep 1
+      date
+    volumeMounts:
+    - name: vol-mnt
+      mountPath: /var/log/dt
+  - name: teiru
+    image: alpine
+    command: ["sh", "-c"]
+    args:
+    - |
+      echo [`date`] Following...
+      tail /var/log/dt/out.log
+    volumeMounts:
+    - name: vol-mnt
+      mountPath: /var/log/dt
+  volumes:
+  - name: vol-mnt
+    emptyDir:
+  terminationGracePeriodSeconds: 0

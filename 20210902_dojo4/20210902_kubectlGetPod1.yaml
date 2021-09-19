@@ -1,0 +1,102 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    creationTimestamp: "2021-08-28T17:49:13Z"
+    generateName: podinfo-7dc5f49b9b-
+    labels:
+      app: podinfo
+      pod-template-hash: 7dc5f49b9b
+    name: podinfo-7dc5f49b9b-h9jsl
+    namespace: default
+    ownerReferences:
+    - apiVersion: apps/v1
+      blockOwnerDeletion: true
+      controller: true
+      kind: ReplicaSet
+      name: podinfo-7dc5f49b9b
+      uid: 08207237-d6cd-4322-816d-0380fab7d9d3
+    resourceVersion: "47167"
+    uid: 5eb46bf3-ecbd-4b68-a5c3-6358be141f1f
+  spec:
+    containers:
+    - image: stefanprodan/podinfo
+      imagePullPolicy: Always
+      name: podinfo
+      ports:
+      - containerPort: 9898
+        protocol: TCP
+      resources: {}
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: default-token-89n6f
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: gke-cluster-1-default-pool-609ba301-mdp1
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: default-token-89n6f
+      secret:
+        defaultMode: 420
+        secretName: default-token-89n6f
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2021-08-28T17:49:14Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2021-08-28T17:49:24Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2021-08-28T17:49:24Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2021-08-28T17:49:14Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://06e22b58a2f1ebb0431a0004902299123f6e4842d45dc5b07f6982344dca681a
+      image: docker.io/stefanprodan/podinfo:latest
+      imageID: docker.io/stefanprodan/podinfo@sha256:e7eeab287181791d36c82c904206a845e30557c3a4a66a8143fa1a15655dae97
+      lastState: {}
+      name: podinfo
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2021-08-28T17:49:24Z"
+    hostIP: 10.146.0.3
+    phase: Running
+    podIP: 10.52.1.5
+    podIPs:
+    - ip: 10.52.1.5
+    qosClass: BestEffort
+    startTime: "2021-08-28T17:49:14Z"
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
