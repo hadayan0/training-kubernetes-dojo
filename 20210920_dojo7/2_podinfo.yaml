@@ -1,0 +1,94 @@
+apiVersion: v1
+items:
+- apiVersion: v1
+  kind: Pod
+  metadata:
+    annotations:
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"name":"res","namespace":"default"},"spec":{"containers":[{"image":"nginx","name":"ng1","resources":{"requests":{"cpu":"25m","memory":"4Mi"}}}]}}
+    creationTimestamp: "2021-09-20T17:49:19Z"
+    name: res
+    namespace: default
+    resourceVersion: "9973503"
+    uid: e2b7942f-6341-4686-8e20-ace2f97145d2
+  spec:
+    containers:
+    - image: nginx
+      imagePullPolicy: Always
+      name: ng1
+      resources:
+        requests:
+          cpu: 25m
+          memory: 4Mi
+      terminationMessagePath: /dev/termination-log
+      terminationMessagePolicy: File
+      volumeMounts:
+      - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+        name: default-token-89n6f
+        readOnly: true
+    dnsPolicy: ClusterFirst
+    enableServiceLinks: true
+    nodeName: gke-cluster-1-default-pool-609ba301-v9qn
+    preemptionPolicy: PreemptLowerPriority
+    priority: 0
+    restartPolicy: Always
+    schedulerName: default-scheduler
+    securityContext: {}
+    serviceAccount: default
+    serviceAccountName: default
+    terminationGracePeriodSeconds: 30
+    tolerations:
+    - effect: NoExecute
+      key: node.kubernetes.io/not-ready
+      operator: Exists
+      tolerationSeconds: 300
+    - effect: NoExecute
+      key: node.kubernetes.io/unreachable
+      operator: Exists
+      tolerationSeconds: 300
+    volumes:
+    - name: default-token-89n6f
+      secret:
+        defaultMode: 420
+        secretName: default-token-89n6f
+  status:
+    conditions:
+    - lastProbeTime: null
+      lastTransitionTime: "2021-09-20T17:49:19Z"
+      status: "True"
+      type: Initialized
+    - lastProbeTime: null
+      lastTransitionTime: "2021-09-20T17:49:21Z"
+      status: "True"
+      type: Ready
+    - lastProbeTime: null
+      lastTransitionTime: "2021-09-20T17:49:21Z"
+      status: "True"
+      type: ContainersReady
+    - lastProbeTime: null
+      lastTransitionTime: "2021-09-20T17:49:19Z"
+      status: "True"
+      type: PodScheduled
+    containerStatuses:
+    - containerID: containerd://e45d23b0dc47a4d9ce2632b2137557f337c2d8b1b715bd59b43c5e6b1a0ca9ef
+      image: docker.io/library/nginx:latest
+      imageID: docker.io/library/nginx@sha256:853b221d3341add7aaadf5f81dd088ea943ab9c918766e295321294b035f3f3e
+      lastState: {}
+      name: ng1
+      ready: true
+      restartCount: 0
+      started: true
+      state:
+        running:
+          startedAt: "2021-09-20T17:49:21Z"
+    hostIP: 10.146.0.10
+    phase: Running
+    podIP: 10.52.2.26
+    podIPs:
+    - ip: 10.52.2.26
+    qosClass: Burstable
+    startTime: "2021-09-20T17:49:19Z"
+kind: List
+metadata:
+  resourceVersion: ""
+  selfLink: ""
