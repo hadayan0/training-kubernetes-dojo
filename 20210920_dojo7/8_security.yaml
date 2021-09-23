@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: sec
+spec:
+  containers:
+  - image: memcached
+    name: mem
+    securityContext:
+      runAsUser: 12345
+      runAsNonRoot: true
+      readOnlyRootFilesystem: true
+      capabilities:
+        drop:
+        - SYS_ADMIN
+        - NET_ADMIN
