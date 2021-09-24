@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deppa
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: megane
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      labels:
+        app: megane
+    spec:
+      containers:
+      - image: nginx:alpine
+        name: camera
