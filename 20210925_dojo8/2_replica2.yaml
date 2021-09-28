@@ -1,0 +1,17 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rep
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: popopo
+  template:
+    metadata:
+      labels:
+        app: popopo
+    spec:
+      containers:
+      - image: nginx
+        name: ctnr
