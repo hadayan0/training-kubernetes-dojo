@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: binary
 binaryData:
-
+  raw-urandom: xlHHIuElv1qMAQqIXo3bzSn/U8k=
