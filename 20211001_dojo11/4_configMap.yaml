@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cmyaml
+data:
+  key1: VALUE1
+  dummy.txt: |
+    hogehoge
+    ahyahyahya
+    Canon Nikon Sony
