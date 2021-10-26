@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sfset
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: statehoge
+  serviceName: statedayo
+  template:
+    metadata:
+      labels:
+        app: statehoge
+    spec:
+      containers:
+      - image: alpine
+        name: kontena
+        command: ["sh", "-c"]
+        args:
+        - |
+          trap 'exit' SIGTERM
+          touch /data/hostname
+          while true; do
+            echo "[`date`] `hostname`" >> /data/hostname
+            sleep 1
+          done
+        volumeMounts:
+        - name: mtvol
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: mtvol
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 32Mi
