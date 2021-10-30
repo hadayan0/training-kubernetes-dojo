@@ -1,0 +1,22 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: cj
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    metadata:
+      name: cj-job
+    spec:
+      completions: 5
+      parallelism: 2
+      template:
+        spec:
+          containers:
+          - name: sleepcon2
+            image: alpine
+            command: ["sh", "-c"]
+            args:
+            - |
+              sleep 5
+          restartPolicy: Never
