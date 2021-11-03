@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: rq-notbesteffort
+spec:
+  hard:
+    cpu: "500m"
+    memory: 128Mi
+  scopes:
+  - NotBestEffort
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: rq-besteffort
+spec:
+  hard:
+    count/pods: "0"
+  scopes:
+  - BestEffort

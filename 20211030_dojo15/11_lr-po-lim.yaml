@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lr-po-lim-per-pod
+  namespace: do15-lr
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+    resources:
+      limits:
+        cpu: 200m
+        memory: 64Mi
+  - name: memcached
+    image: memcached
+    resources:
+      limits:
+        cpu: 200m
+        memory: 64Mi
+  - name: redis
+    image: redis
+    resources:
+      limits:
+        cpu: 200m
+        memory: 64Mi
+  terminationGracePeriodSeconds: 0
