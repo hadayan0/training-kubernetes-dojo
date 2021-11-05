@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: dojo16-np
+spec:
+  podSelector:
+    matchLabels:
+      role: app
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - ipBlock:
+        cidr: 10.2.0.0/16
+        except:
+        - 10.2.1.0/24
+    - namespaceSelector:
+        matchLabels:
+          project: test-app
+    - podSelector:
+        matchLabels:
+          role: frontend
+    ports:
+    - protocol: TCP
+      port: 8080
+  egress:
+  - to:
+    - ipBlock:
+        cidr: 172.31.0.0/16
+    ports:
+    - protocol: TCP
+      port: 80
