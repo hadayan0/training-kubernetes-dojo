@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-nsalpine2nginx
+  namespace: dojo16
+spec:
+  podSelector:
+    matchLabels:
+      app: ng
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          ns: default
+      podSelector:
+        matchLabels:
+          run: al
