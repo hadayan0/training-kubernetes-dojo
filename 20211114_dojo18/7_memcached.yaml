@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: d18
+  name: memcached
+  labels:
+    app: memcached
+spec:
+  containers:
+  - name: memcached
+    image: memcached:alpine
