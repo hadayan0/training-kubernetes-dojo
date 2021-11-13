@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: host-xxxx-l74c
+  namespace: d18
+spec:
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 2
+        preference:
+          matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - gke-cluster-1-default-pool-d3132b3b-xxxx
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: kubernetes.io/hostname
+            operator: In
+            values:
+            - gke-cluster-1-default-pool-d3132b3b-l74c
+  containers:
+  - name: nginx
+    image: nginx:alpine
