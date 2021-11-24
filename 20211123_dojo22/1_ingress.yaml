@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-test
+  namespace: d22
+spec:
+  backend:
+    serviceName: default-backend
+    servicePort: 80
+  rules:
+  - host: app1.example.com
+    http:
+      paths:
+      - path: /hoge
+        backend:
+          serviceName: app1-hoge
+          servicePort: 80
+      - path: /fuga
+        backend:
+          serviceName: app1-fuga
+          servicePort: 8080
+  - host: app2.example.com
+    http:
+      paths:
+      - backend:
+          serviceName: app2
+          servicePort: 80
